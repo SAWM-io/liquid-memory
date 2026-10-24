@@ -37,8 +37,8 @@
   <path d="M394 290h27" fill="none" stroke="#7c7e80" stroke-width="1.4" marker-end="url(#arrow)"/>
   <rect x="432" y="206" width="336" height="174" rx="18" fill="#ebebe7" stroke="#d6d7d3"/>
   <text x="456" y="237" class="muted label">02 / TASK B</text>
-  <text x="456" y="277" class="ink" font-size="26" font-weight="600" letter-spacing="-.5">Switch to a game</text>
-  <text x="456" y="305" class="muted" font-size="15">Work with a different set of rules.</text>
+  <text x="456" y="277" class="ink" font-size="26" font-weight="600" letter-spacing="-.5">Start another task</text>
+  <text x="456" y="305" class="muted" font-size="15">Follow a different objective.</text>
   <path d="M456 326H744" stroke="#d4d5d1"/>
   <rect x="458" y="347" width="8" height="8" rx="2" fill="#747679"/>
   <text x="476" y="356" class="ink" font-size="14">A separate context and state</text>
