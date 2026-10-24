@@ -60,8 +60,8 @@ python demo.py --cloud --state .state/memory.json
 
 Ce mode écrit des faits fictifs dans votre espace et utilise son quota. Les
 permissions et la configuration Windows sont détaillées dans le
-[README principal](README.md#connect-the-real-cloud). Aucune suppression n'est
-prévue. Ne publiez jamais vos clés ni votre répertoire `.state/`.
+[README principal](README.md#connect-the-real-cloud). La démonstration ne déclenche aucune suppression. Une procédure de purge
+explicite est documentée séparément. Ne publiez jamais vos clés ni votre répertoire `.state/`.
 
 ## Dans votre code
 
@@ -91,6 +91,27 @@ Pour une équipe : mondes et droits propres à chaque agent, et un coordinateur
 unique pour les écritures d'une mission partagée. Le [guide développeur](docs/agents-and-characters.md)
 explique aussi comment relier les expériences aux états de caractère et aux
 humeurs, avec des sources et un historique.
+
+## Flashback, traçabilité et effacement
+
+| Fonction | Utilisation pour votre agent ou chatbot |
+| --- | --- |
+| Flashback | Consulter les preuves à une date de validité ou de connaissance passée. |
+| Révisions | Corriger un fait en gardant la trace des versions confirmées. |
+| Provenance | Relier les informations aux sources, dates, identifiants et reçus Cloud. |
+| Export de trace | `memory.trace(monde)` produit un JSON limité à cet index local. |
+| Purge ciblée | `purge_world()` bloque la réutilisation et exige la confirmation de la mémoire et d’ODVL. |
+| Droits multi-agents | Séparer les périmètres par espaces, entités, clés et grants. |
+
+Le [guide avec exemples de code](docs/governance.md) explique ces mécanismes et
+leurs limites. **Ils contribuent à votre démarche de conformité ; ils ne sont
+pas une certification ni une conformité automatique au RGPD, à l’AI Act ou à
+NIS2.** Le périmètre, les finalités, la rétention, les sauvegardes et les droits
+des personnes restent à traiter au niveau de votre application.
+
+La trace locale n’est pas un export exhaustif de l’audit Cloud. Après une purge,
+prenez aussi en charge les copies, exports et sauvegardes de votre application.
+Aucune purge réelle n’a été exécutée pour tester ce dépôt.
 
 ## Une base pour le très long terme
 

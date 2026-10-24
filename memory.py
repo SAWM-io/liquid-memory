@@ -107,6 +107,8 @@ class WorldMemory:
         with self._locked():
             item = self.data["worlds"].get(name)
             request = {"name": name, "description": description}
+            if item and item.get("status") in {"purge_pending", "purged"}:
+                raise ValueError("World retired for erasure; provision a new world name and entity")
             if item and item["request"] != request:
                 raise ValueError("World already exists with different creation input")
             if not item:
@@ -267,3 +269,60 @@ class WorldMemory:
             if "candidate_id" in row and row["candidate_id"] not in ids:
                 raise ValueError("ODVL observation candidate mismatch")
         return result
+
+    def trace(self, world):
+        """Export this writer's source/receipt trail; not a complete Cloud audit log."""
+        with self._locked():
+            entity = self._world(world)
+            return copy.deepcopy({
+                "schema": "liquid-memory-local-trace/v1",
+                "coverage": "checkpoint_only", "world": world,
+                "entity_id": entity, "memory_space_id": self.space_id,
+                "exported_at_ms": time.time_ns() // 1_000_000,
+                "records": self._history(world),
+                "pending_operations": [op["operation_id"] for op in self.data["operations"].values()
+                    if op["world"] == world and op["status"] == "pending"],
+            })
+
+    def purge_world(self, world, *, operation_id, confirm_entity_id):
+        """Explicit erasure: block local reuse, then require memory AND ODVL receipts.
+
+        Requires an authorized memory:purge key. Never called by the demo.
+        Backups, external model logs and other application copies require their
+        own lifecycle handling. The Cloud entity is not reusable after purge.
+        """
+        _text(operation_id, "operation_id", 160)
+        with self._locked():
+            item = self.data["worlds"].get(world)
+            if (not item or not item.get("entity_id")
+                    or item["entity_id"] != confirm_entity_id):
+                raise ValueError("Explicit confirmation must match this world's exact entity ID")
+            if item["status"] not in {"confirmed", "purge_pending", "purged"}:
+                raise ValueError("World creation is not confirmed")
+            purge = item.get("purge")
+            if purge and purge["operation_id"] != operation_id:
+                raise ValueError("Resume the existing purge identity; reconcile any incomplete outcome")
+            if item["status"] == "purged":
+                return copy.deepcopy(purge["receipt"])
+            if not purge:
+                purge = {"operation_id": operation_id,
+                         "started_at_ms": time.time_ns() // 1_000_000,
+                         "idempotency_key": "purge-" + _digest(self.space_id, item["entity_id"], operation_id)}
+                item.update(status="purge_pending", purge=purge)
+                self._save()  # Prevent local answers/recreation even if the acknowledgement is lost.
+            self._check_retry_window(purge)
+            receipt = self.client.purge_entity(item["entity_id"], idempotency_key=purge["idempotency_key"])
+            self._scope(receipt, item["entity_id"], required=True)
+            if (receipt.get("status") != "purged"
+                    or not str(receipt.get("purge_receipt", "")).startswith("pgr_")
+                    or receipt.get("memory_cleared") is not True
+                    or receipt.get("odvl_cleared") is not True):
+                raise ValueError("Purge not fully confirmed; world remains blocked pending reconciliation")
+            purge["receipt"] = receipt
+            item["status"] = "purged"
+            item.pop("request", None)
+            item.pop("receipt", None)
+            self.data["operations"] = {key: op for key, op in self.data["operations"].items()
+                                       if op["world"] != world}
+            self._save()
+            return copy.deepcopy(receipt)

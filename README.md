@@ -27,6 +27,21 @@ the model generates them, while this kit records and retrieves them.
 | AI characters | Evidence-linked traits, moods and changing relationship interpretations |
 | Agent teams | Individual memories plus explicitly authorized shared worlds |
 
+## Memory controls you can inspect
+
+| Function | What a developer can do |
+| --- | --- |
+| Flashback | Ask what was valid or known at a past time using TSST cutoffs. |
+| Revision history | Correct a fact while retaining this writer's earlier confirmed revisions. |
+| Provenance | Associate sources, evidence IDs, dates and Cloud receipts with a result. |
+| Local trace export | Export `memory.trace(world)` as reviewable JSON, explicitly limited to this checkpoint. |
+| Scoped erasure | Call the explicit `purge_world()` path and require both memory and ODVL confirmation. |
+| Multi-agent access | Bind every read/write to an authorized entity; use scopes and grants for separation. |
+
+[Examples: flashback, correction, trace export and erasure](docs/governance.md).
+These are **technical controls that support compliance work**, not a certification
+or a guarantee that an entire agent, chatbot or organization is legally compliant.
+
 A world is a **named context chosen by your application or model**. Here it maps
 to a Basira entity. A mission, a house, a support case and a character's own
 profile can each have their own world. The example does not assume a new world
@@ -86,7 +101,8 @@ python demo.py --cloud --state .state/memory.json
 
 Cloud mode creates demonstration worlds and records synthetic facts in **your
 space**. It consumes the applicable Cloud quota. Reuse the same checkpoint to
-resume; keep it private and backed up. No operation deletes memories.
+resume; keep it private and backed up. The demo never deletes memories.
+An explicit, separately authorized erasure recipe is provided in the governance guide.
 The demo does not send a task to an LLM or perform a real business action.
 
 ## Add memory to your own agent
@@ -152,6 +168,8 @@ from the checkpoint without replaying their writes.
 | `recall(world, query, at_ms=...)` | TSST recall using a past validity-time cutoff |
 | `record_fact(...)` | A sourced declaration or revision, confirmed by Cloud receipt |
 | `observe(world)` | ODVL observations for the known current candidates |
+| `trace(world)` | A local source/receipt export, with its coverage explicitly labeled |
+| `purge_world(world, operation_id=..., confirm_entity_id=...)` | Explicit scoped erasure; blocks reuse and checks memory + ODVL receipts |
 
 Basira persists the declarations. TSST retrieves evidence with temporal and
 contextual controls. ODVL provides memory activation measurements used by the
@@ -194,6 +212,13 @@ not a publication of Élya's runtime or the Cloud engines.
 - This release is [tested offline](docs/validation.md) against failure cases and
   the published SDK transport contract. It makes no claim of error-free recall, subsecond latency
   or a multi-year endurance benchmark.
+
+## Governance and verification
+
+See the [governance guide](docs/governance.md) for the verified API boundaries,
+code examples and regulatory references. The SDK does not offer a complete
+account-wide audit export, and the local trace does not replace one.
+[Validation and limitations](docs/validation.md) distinguish mocked tests from live checks.
 
 ## License
 
