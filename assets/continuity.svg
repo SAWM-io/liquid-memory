@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Return to the work. Keep the thread.</title>
+  <desc id="desc">An illustrative long-term memory flow. An agent begins Task A, switches to Task B, then resumes Task A. All three stages connect to persistent memory outside the model. Memory includes sources, state, and history. The write path is proposal, verification, cloud receipt, and confirmation; confirmation follows checking the storage response.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      .ink { fill: #151618; }
+      .muted { fill: #686a6c; }
+      .label { font-size: 11px; font-weight: 600; letter-spacing: 1.7px; }
+    </style>
+    <g id="flower" fill="none" stroke="currentColor" stroke-width="1.5">
+      <ellipse cy="-16" rx="9" ry="20"/><ellipse cy="-16" rx="9" ry="20" transform="rotate(30)"/>
+      <ellipse cy="-16" rx="9" ry="20" transform="rotate(60)"/><ellipse cy="-16" rx="9" ry="20" transform="rotate(90)"/>
+      <ellipse cy="-16" rx="9" ry="20" transform="rotate(120)"/><ellipse cy="-16" rx="9" ry="20" transform="rotate(150)"/>
+      <ellipse cy="-16" rx="9" ry="20" transform="rotate(180)"/><ellipse cy="-16" rx="9" ry="20" transform="rotate(210)"/>
+      <ellipse cy="-16" rx="9" ry="20" transform="rotate(240)"/><ellipse cy="-16" rx="9" ry="20" transform="rotate(270)"/>
+      <ellipse cy="-16" rx="9" ry="20" transform="rotate(300)"/><ellipse cy="-16" rx="9" ry="20" transform="rotate(330)"/>
+    </g>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="m2 1 4 3-4 3" fill="none" stroke="#7c7e80" stroke-width="1.4"/></marker>
+  </defs>
+  <rect width="1200" height="680" fill="#f5f5f1"/>
+  <use href="#flower" transform="translate(66 48) scale(.5)" color="#18191b"/>
+  <text x="99" y="54" class="ink" font-size="15" font-weight="600" letter-spacing="2.3">SAWM <tspan fill="#9a9c9d" font-weight="400">/</tspan> BASIRA</text>
+  <text x="1152" y="53" text-anchor="end" class="muted label">CONTEXT SWITCHES. MEMORY CONNECTS.</text>
+  <text x="48" y="125" class="ink" font-size="40" font-weight="600" letter-spacing="-1.5">Return to the work. Keep the thread.</text>
+  <text x="49" y="161" class="muted" font-size="17">A → B → A: retrieve the relevant context, check it, and continue.</text>
+
+  <!-- The same task can be resumed after a context switch. -->
+  <rect x="48" y="206" width="336" height="174" rx="18" fill="#fff" stroke="#cbcdcb"/>
+  <text x="72" y="237" class="muted label">01 / TASK A</text>
+  <text x="72" y="277" class="ink" font-size="26" font-weight="600" letter-spacing="-.5">Start a mission</text>
+  <text x="72" y="305" class="muted" font-size="15">Define the goal and gather evidence.</text>
+  <path d="M72 326H360" stroke="#e6e7e3"/>
+  <circle cx="78" cy="351" r="4" fill="#242629"/>
+  <text x="92" y="356" class="ink" font-size="14">Intent + sources + current state</text>
+
+  <path d="M394 290h27" fill="none" stroke="#7c7e80" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="432" y="206" width="336" height="174" rx="18" fill="#ebebe7" stroke="#d6d7d3"/>
+  <text x="456" y="237" class="muted label">02 / TASK B</text>
+  <text x="456" y="277" class="ink" font-size="26" font-weight="600" letter-spacing="-.5">Switch to a game</text>
+  <text x="456" y="305" class="muted" font-size="15">Work with a different set of rules.</text>
+  <path d="M456 326H744" stroke="#d4d5d1"/>
+  <rect x="458" y="347" width="8" height="8" rx="2" fill="#747679"/>
+  <text x="476" y="356" class="ink" font-size="14">A separate context and state</text>
+
+  <path d="M778 290h27" fill="none" stroke="#7c7e80" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="816" y="206" width="336" height="174" rx="18" fill="#18191c"/>
+  <text x="840" y="237" fill="#b8babd" class="label">03 / TASK A</text>
+  <text x="840" y="277" fill="#f5f5f1" font-size="26" font-weight="600" letter-spacing="-.5">Resume the mission</text>
+  <text x="840" y="305" fill="#b8babd" font-size="15">Recover what matters for the next step.</text>
+  <path d="M840 326H1128" stroke="#414247"/>
+  <circle cx="846" cy="351" r="4" fill="#f5f5f1"/>
+  <text x="860" y="356" fill="#f5f5f1" font-size="14">Retrieve + verify + continue</text>
+
+  <path d="M216 380v36h768v-36M600 380v36M600 416v30" fill="none" stroke="#9a9c9c" stroke-width="1.4"/>
+  <circle cx="216" cy="416" r="4" fill="#f5f5f1" stroke="#77797b" stroke-width="1.4"/>
+  <circle cx="600" cy="416" r="4" fill="#f5f5f1" stroke="#77797b" stroke-width="1.4"/>
+  <circle cx="984" cy="416" r="4" fill="#f5f5f1" stroke="#77797b" stroke-width="1.4"/>
+
+  <!-- A concrete storage response precedes confirmation. -->
+  <rect x="48" y="447" width="1104" height="185" rx="20" fill="#fff" stroke="#b8bbb9"/>
+  <use href="#flower" transform="translate(88 487) scale(.4)" color="#323437"/>
+  <text x="116" y="484" class="ink" font-size="20" font-weight="600" letter-spacing="-.3">Persistent memory</text>
+  <text x="116" y="506" class="muted" font-size="13">Stored outside the model</text>
+  <path d="M72 529H376" stroke="#e0e2de"/>
+  <text x="72" y="557" class="ink" font-size="15">Sources + state + history</text>
+  <text x="72" y="581" class="muted" font-size="13">Relevant context across sessions.</text>
+
+  <path d="M405 472V603" stroke="#e0e2de"/>
+  <text x="431" y="480" class="muted label">A CHECKED WRITE PATH</text>
+  <rect x="431" y="496" width="157" height="77" rx="10" fill="#f2f3ef"/>
+  <text x="445" y="520" class="muted" font-size="10" font-weight="600" letter-spacing="1">01</text>
+  <text x="445" y="543" class="ink" font-size="16" font-weight="600">Proposal</text>
+  <text x="445" y="562" class="muted" font-size="11">Candidate update</text>
+  <path d="M594 535h11" fill="none" stroke="#7c7e80" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="611" y="496" width="157" height="77" rx="10" fill="#f2f3ef"/>
+  <text x="625" y="520" class="muted" font-size="10" font-weight="600" letter-spacing="1">02</text>
+  <text x="625" y="543" class="ink" font-size="16" font-weight="600">Verification</text>
+  <text x="625" y="562" class="muted" font-size="11">Check the evidence</text>
+  <path d="M774 535h11" fill="none" stroke="#7c7e80" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="791" y="496" width="157" height="77" rx="10" fill="#f2f3ef"/>
+  <text x="805" y="520" class="muted" font-size="10" font-weight="600" letter-spacing="1">03</text>
+  <text x="805" y="543" class="ink" font-size="16" font-weight="600">Cloud receipt</text>
+  <text x="805" y="562" class="muted" font-size="11">Storage response</text>
+  <path d="M954 535h11" fill="none" stroke="#7c7e80" stroke-width="1.2" marker-end="url(#arrow)"/>
+  <rect x="971" y="496" width="157" height="77" rx="10" fill="#25262a"/>
+  <text x="985" y="520" fill="#b8babd" font-size="10" font-weight="600" letter-spacing="1">04</text>
+  <text x="985" y="543" fill="#f5f5f1" font-size="16" font-weight="600">Confirmation</text>
+  <text x="985" y="562" fill="#b8babd" font-size="11">Report the outcome</text>
+  <text x="431" y="603" class="muted" font-size="12">Confirm completion after checking the storage response.</text>
+  <text x="48" y="658" class="muted" font-size="11">Illustrative flow · Context selection and validation remain part of the agent’s work.</text>
+</svg>
